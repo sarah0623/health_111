@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("setMeal")
-public class SetMealController {
+public class SetMealController  {
     @Reference
     private SetMealService setMealService;
 
@@ -68,10 +68,13 @@ public class SetMealController {
      * @return
      */
     @PostMapping("findPage")
-    public Result findPage(@RequestBody QueryPageBean queryPageBean) {
-        // 调用服务分页查询
-        PageResult<SetMeal> setMealPageResult = setMealService.findPage(queryPageBean);
-        return new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS, setMealPageResult);
+
+    public Result findPage(@RequestBody QueryPageBean queryPageBean) throws HealthException{
+
+            // 调用服务分页查询
+            PageResult<SetMeal> setMealPageResult = setMealService.findPage(queryPageBean);
+            return new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS, setMealPageResult);
+
     }
 
     /**

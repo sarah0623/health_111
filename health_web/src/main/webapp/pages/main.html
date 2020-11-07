@@ -58,11 +58,11 @@
                     <el-submenu v-for="menu in menuList" :index="menu.path">
                         <template slot="title">
                             <i class="fa" :class="menu.icon"></i>
-                            {{menu.title}}
+                            {{menu.name}}
                         </template>
                         <template v-for="child in menu.children">
                             <el-menu-item :index="child.path">
-                                <a :href="child.linkUrl" target="right">{{child.title}}</a>
+                                <a :href="child.linkUrl" target="right">{{child.name}}</a>
                             </el-menu-item>
                         </template>
                     </el-submenu>
@@ -86,150 +86,20 @@
         data: {
             loginUsername: '',
             menuList: [
+            ],
 
-                {
-                    "path": "1",
-                    "title": "工作台",
-                    "icon": "fa-dashboard",
-                    "children": []
-                },
-                {
-                    "path": "2",
-                    "title": "会员管理",
-                    "icon": "fa-user-md",
-                    "children": [
-                        {
-                            "path": "/2-1",
-                            "title": "会员档案",
-                            "linkUrl": "member.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/2-2",
-                            "title": "体检上传",
-                            "children": []
-                        },
-                        {
-                            "path": "/2-3",
-                            "title": "会员统计",
-                            "linkUrl": "all-item-list.html",
-                            "children": []
-                        },
-                    ]
-                },
-                {
-                    "path": "3",
-                    "title": "预约管理",
-                    "icon": "fa-tty",
-                    "children": [
-                        {
-                            "path": "/3-1",
-                            "title": "预约列表",
-                            "linkUrl": "ordersettinglist.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/3-2",
-                            "title": "预约设置",
-                            "linkUrl": "ordersetting.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/3-3",
-                            "title": "套餐管理",
-                            "linkUrl": "setmeal.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/3-4",
-                            "title": "检查组管理",
-                            "linkUrl": "checkgroup.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/3-5",
-                            "title": "检查项管理",
-                            "linkUrl": "checkitem.html",
-                            "children": []
-                        },
-                    ]
-                },
-                {
-                    "path": "4",
-                    "title": "健康评估",
-                    "icon": "fa-stethoscope",
-                    "children": [
-                        {
-                            "path": "/4-1",
-                            "title": "中医体质辨识",
-                            "linkUrl": "all-medical-list.html",
-                            "children": []
-                        },
-                    ]
-                },
-                {
-                    "path": "5",     //菜单项所对应的路由路径
-                    "title": "统计分析",     //菜单项名称
-                    "icon": "fa-heartbeat",
-                    "children": [//是否有子菜单，若没有，则为[]
-                        {
-                            "path": "/5-1",
-                            "title": "会员数量拆线图",
-                            "linkUrl": "report_member.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/5-2",
-                            "title": "套餐预约占比",
-                            "linkUrl": "report_setmeal.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/5-3",
-                            "title": "运营数据统计",
-                            "linkUrl": "report_business.html",
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "path": "6",     //系统设置项项所对应的路由路径
-                    "title": "系统设置",     //系统设置项名称
-                    "icon": "fa-heartbeat",
-                    "children": [//是否有子菜单，若没有，则为[]
-                        {
-                            "path": "/6-1",
-                            "title": "菜单设置",
-                            "linkUrl": "menu.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/6-2",
-                            "title": "权限设置",
-                            "linkUrl": "permission.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/6-3",
-                            "title": "用户管理",
-                            "linkUrl": "usermanager.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/6-4",
-                            "title": "角色管理",
-                            "linkUrl": "usermanager.html",
-                            "children": []
-                        }
-                    ]
-                }
-            ]
         },
         mounted() {
             // 获取登陆用户名
             axios.get('/user/getUsername.do').then(res => {
                 if (res.data.flag) {
                     this.loginUsername = res.data.data;
+                    axios.get('/menu/getMenuByUsername.do?username='+this.loginUsername).then(res2=>{
+                            console.log(res2);
+                        console.log(JSON.stringify(res2.data.data));
+                        this.menuList=res2.data.data;
+                        }
+                    )
                 } else {
                     this.$message.error(res.data.message);
                 }
