@@ -10,11 +10,37 @@ import java.util.List;
 /**
  * 分页结果封装对象
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class PageResult<T> implements Serializable {
     private Long total;//总记录数
     private List<T> rows;//当前页结果
 
+    public PageResult(Long total, List<T> rows) {
+        super();
+        this.total = total;
+        this.rows = rows;
+    }
+    public Long getTotal() {
+        return total;
+    }
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+    public List<T> getRows() {
+        return rows;
+    }
+    public void setRows(List<T> rows) {
+        this.rows = rows;
+    }
+
+    public PageResult() {
+    }
+
+    @Override
+    public String toString() {
+        return "PageResult{" +
+                "total=" + total +
+                ", rows=" + rows +
+                '}';
+    }
 }
