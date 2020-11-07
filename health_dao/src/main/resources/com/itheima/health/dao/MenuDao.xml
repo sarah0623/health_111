@@ -3,11 +3,39 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.health.dao.MenuDao">
-   <select id="findParentById" resultType="menu">select m.id,m.name,IFNULL(m.linkUrl,'') linkUrl,m.path,m.priority,m.description,m.icon,m.parentMenuId from t_user u,t_user_role ur,t_role_menu rm,t_menu m,t_role r where u.id=ur.user_id and ur.role_id=r.id and rm.role_id=r.id and m.id=rm.menu_id and u.id=#{id} and IFNULL(m.parentMenuId,-1) =-1
+   <select id="findParentById" resultType="menu">
+select m.id,m.name,IFNULL(m.linkUrl,'') linkUrl,m.path,m.priority,m.description,m.icon,m.parentMenuId
+from t_user u,t_user_role ur,t_role_menu rm,t_menu m,t_role r where u.id=ur.user_id and ur.role_id=r.id and rm.role_id=r.id and m.id=rm.menu_id
+ and u.id=#{id} and IFNULL(m.parentMenuId,-1) =-1
    </select>
-    <select id="findByParentId" resultType="menu">
+    <select id="findByParentId" resultType="menu" parameterType="integer">
 
-        select * from t_menu where parentMenuId=#{parentId}
+        	 select m.id,m.name,m.linkUrl,m.path,m.priority,m.description,m.icon,m.parentMenuId
+from t_user u,t_user_role ur,t_role_menu rm,t_menu m,t_role r where u.id=ur.user_id and ur.role_id=r.id and rm.role_id=r.id and m.id=rm.menu_id
+ and u.id=#{userId} and m.parentMenuId=#{parentId}
     </select>
 
+    <select id="findMenuListByUserName" parameterType="string" resultMap="MenuMap">
+        select tm.id,tm.name,tm.linkUrl,tm.path,tm.priority,tm.icon
+           from t_user tu,t_user_role tur,t_role tr,t_role_menu trm,t_menu tm
+           where tu.username = #{username}
+           and tu.id = tur.user_id
+           and tur.role_id = tr.id
+           and tr.id = trm.role_id
+           and tm.id = trm.menu_id
+           and tm.parentMenuId is null
+    </select>
+
+    <resultMap id="MenuMap" type="Menu">
+        <id column="id" property="id"/>
+        <result column="linkUrl" property="linkUrl"/>
+        <result column="path" property="path"/>
+        <result column="icon" property="icon"/>
+        <result column="priority" property="priority"/>
+        <collection property="children" column="id" select="com.itheima.health.dao.MenuDao.findChildrenByParentId" ofType="Menu"/>
+    </resultMap>
+
+    <select id="findChildrenByParentId" resultType="Menu" parameterType="integer">
+        select * from t_menu where parentMenuId = #{id}
+    </select>
 </mapper>

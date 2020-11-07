@@ -33,13 +33,18 @@ public class MenuServiceImpl implements MenuService {
 
         List<Menu> parentList=menuDao.findParentById(user.getId());
 
-        parentList.forEach(p->p.setChildren(menuDao.findByParentId(p.getId())));
+        parentList.forEach(p->p.setChildren(menuDao.findByParentId(user.getId(),p.getId())));
 
 
 
 
 
         return parentList;
+    }
+
+    @Override
+    public List<Menu> getMenuListByUserName(String username) {
+       return menuDao.findMenuListByUserName(username);
     }
 
 
