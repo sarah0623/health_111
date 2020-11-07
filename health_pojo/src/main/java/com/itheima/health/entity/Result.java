@@ -9,12 +9,18 @@ import java.io.Serializable;
 /**
  * 封装返回结果
  */
-@Data
+/*@Data
 @NoArgsConstructor
+@AllArgsConstructor*/
 public class Result implements Serializable {
     private boolean flag;//执行结果，true为执行成功 false为执行失败
     private String message;//返回结果信息
     private Object data;//返回数据
+
+    public Result(boolean flag, String message) {
+        this.flag = flag;
+        this.message = message;
+    }
 
     public Result(boolean flag, String message, Object data) {
         this.flag = flag;
@@ -22,8 +28,39 @@ public class Result implements Serializable {
         this.data = data;
     }
 
-    public Result(boolean flag, String message) {
+    public Result() {
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "flag=" + flag +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

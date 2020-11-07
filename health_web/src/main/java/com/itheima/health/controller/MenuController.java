@@ -7,7 +7,6 @@ package com.itheima.health.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.health.entity.Result;
-import com.itheima.health.pojo.Menu;
 import com.itheima.health.service.MenuService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +25,11 @@ public class MenuController {
     @GetMapping("/getMenuByUsername")
     public Result getMenuByUsername(@RequestParam String username) {
 
-//        List menu = menuService.getMenuByUsername(username);
+        List menu = menuService.getMenuByUsername(username);
 //
-//        return new Result(true, "一给我力giao",menu);
+        return new Result(true, "一给我力giao",menu);
 
-        List<Menu> resultList = menuService.getMenuListByUserName(username);
-        return new Result(true, "oligei", resultList);
+//        List<Menu> resultList = menuService.getMenuListByUserName(username);
+//        return new Result(true, "oligei", resultList);
     }
 }
