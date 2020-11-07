@@ -69,5 +69,17 @@ public interface MessageConstant {
     static final String EDIT_SETMEAL_SUCCESS = "编辑体检套餐成功";
     static final String DELETE_SETMEAL_SUCCESS = "删除体检套餐成功";
 
+    static final String QUERY_ROLE_SUCCESS = "查询角色成功";
+    static final String QUERY_ROLE_FAIL = "查询角色失败";
+    static final String ADD_ROLE_SUCCESS = "新增角色成功";
+    static final String ADD_ROLE_FAIL = "新增角色失败";
+    static final String EDIT_ROLE_SUCCESS = "编辑角色成功";
+    static final String EDIT_ROLE_FAIL = "编辑角色成功";
+    static final String DELETE_ROLE_SUCCESS = "删除角色成功";
+    static final String DELETE_ROLE_FAIL = "删除角色失败";
+    static final String ROLE_IN_USE = "已被菜单管理绑定,不可删除";
+
+
+
 
 }
