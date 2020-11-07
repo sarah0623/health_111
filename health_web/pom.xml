@@ -12,6 +12,7 @@
     <artifactId>health_web</artifactId>
 
     <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>com.itheima</groupId>
@@ -28,6 +29,12 @@
             <artifactId>jxls-poi</artifactId>
             <version>1.0.16</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
     </dependencies>
+
 
 </project>
