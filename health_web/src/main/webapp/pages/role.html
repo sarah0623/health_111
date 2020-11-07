@@ -372,7 +372,7 @@
                 //选中基本信息标签项
                 this.activeName = 'first';
                 // 清除钩选
-                this.RoleIds = [];
+                this.menuIds = [];
             },
             // 弹出添加窗口
             handleCreate() {
@@ -414,7 +414,7 @@
                                     if (res2.data.flag) {
                                         // 成功
                                         //绑定数据
-                                        this.checkItemIds = res2.data.data;
+                                        this.menuIds = res2.data.data;
                                     } else {
                                         //失败
                                         this.$message({methods: res2.data.message, type: "error"});
@@ -428,6 +428,7 @@
                     } else {
                         //失败
                         this.$message({methods: res.data.message, type: "error"});
+                        // alert("false")
                     }
                 })
             },

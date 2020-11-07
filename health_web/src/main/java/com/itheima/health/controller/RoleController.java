@@ -66,13 +66,13 @@ public class RoleController {
 
     /**
      * 通过id查询
-     * @param id
+     * @param roleId
      * @return
      */
     @GetMapping("/findById")
-    public Result findById(int id) {
+    public Result findById(int roleId) {
         // 调用业务服务
-        Role role = roleService.findById(id);
+        Role role = roleService.findById(roleId);
         // 响应结果
         return new Result(true, MessageConstant.QUERY_ROLE_SUCCESS, role);
     }
