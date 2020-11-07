@@ -3,6 +3,7 @@ package com.itheima.health.service;
 import com.itheima.health.exception.HealthException;
 import com.itheima.health.pojo.Order;
 
+import java.util.List;
 import java.util.Map;
 
 public interface OrderService {
@@ -21,4 +22,24 @@ public interface OrderService {
      * @return
      */
     Map findById4Detail(int id);
+
+    /**
+     * 获取所有的用户预约数据
+     *
+     * @return
+     */
+
+    List<String> findAllOrder();
+
+
+
+    /**
+     * 删除所有的用户预约数据
+     *
+     * @return
+     */
+
+    void deleteByOrder();
+
+
 }

@@ -11,11 +11,15 @@ import java.util.List;
 /**
  * Description: 定时清理七牛上的垃圾图片
  */
+
+
+/*
+
 @Component
 public class CleanImgJob {
-    /**
+    *//**
      * 订阅服务
-     */
+     *//*
     @Reference
     private SetMealService setMealService;
 
@@ -33,3 +37,8 @@ public class CleanImgJob {
         QiNiuUtils.removeFiles(strings);
     }
 }
+
+*/
+
+
+

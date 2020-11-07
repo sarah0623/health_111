@@ -101,4 +101,34 @@ public class OrderServiceImpl implements OrderService {
     public Map findById4Detail(int id) {
         return orderDao.findById4Detail(id);
     }
+
+
+    /**
+     * 获取所有的用户预约数据
+     *
+     * @return
+     */
+
+    @Override
+    public List<String> findAllOrder() {
+
+
+
+
+        return orderDao.findAllOrder();
+    }
+
+    /**
+     * 删除所有的用户预约数据
+     *
+     * @return
+     */
+    @Override
+    public void deleteByOrder() {
+
+        orderDao.deleteByOrder();
+
+    }
+
+
 }

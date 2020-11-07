@@ -90,4 +90,31 @@ public class OrderSettingServiceImpl implements OrderSettingService {
             orderSettingDao.add(orderSetting);
         }
     }
+
+
+
+
+    /**
+     * 获取t_ordersetting表的所有预约数据
+     *
+     * @return
+     */
+    @Override
+    public List<String> findAllOrderSetting() {
+        return orderSettingDao.findAllOrderSetting();
+    }
+
+    /**
+     * 删除t_ordersetting表的所有预约数据
+     *
+     * @return
+     */
+    @Override
+    public void deleteByOrderSetting() {
+
+        orderSettingDao.deleteByOrderSetting();
+
+    }
+
+
 }
