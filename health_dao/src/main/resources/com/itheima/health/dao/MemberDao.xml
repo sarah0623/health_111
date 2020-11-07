@@ -98,4 +98,27 @@
         select count(id) from t_member
     </select>
 
+    <!--性别分类占比-->
+    <select id="getSetmealReportBySex" resultType="map">
+        select case
+        when t.age &lt;= 18 then '0-18岁'
+        when t.age &gt; 18 and t.age &lt;= 30 then '19-30岁'
+        when t.age &gt; 30 and t.age &lt;= 45 then '31-45岁'
+        when t.age &gt; 45 then '45岁以上'
+        end name,
+        count(1) value
+        from (SELECT ROUND(DATEDIFF(CURDATE(), birthday)/365) age FROM t_member) t
+        group by case
+        when t.age &lt;= 18 then '0-18岁'
+        when t.age &gt; 18 and t.age &lt;= 30 then '19-30岁'
+        when t.age &gt; 30 and t.age &lt;= 45 then '31-45岁'
+        when t.age &gt; 45 then '45岁以上'
+        end
+    </select>
+
+    <!--年龄段分类占比-->
+    <select id="getSetmealReportByAge" resultType="map">
+        select sex name,count(sex) value from t_member group by sex
+    </select>
+
 </mapper>

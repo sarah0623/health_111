@@ -13,14 +13,13 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.jxls.transform.poi.PoiContext;
 import org.jxls.util.JxlsHelper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -70,6 +69,8 @@ public class ReportController {
     }
 
     /**
+     * 套餐预约占比
+     *
      * @return
      */
     @GetMapping("getSetmealReport")
@@ -160,5 +161,94 @@ public class ReportController {
 
     }
 
+    /**
+     * 性别分类占比
+     * @return
+     */
+    @GetMapping("/getSetmealReportBySex")
+    public Result getSetmealReportBySex() {
+        // 调用服务查询性别分类占比
+        List<Map<String, Object>> sexCount = memberService.getSetmealReportBySex();
+        // 性别集合
+        List<String> sex = new ArrayList<>();
+        // 抽取性别名称
+        if (sexCount != null) {
+            sexCount.forEach(s -> sex.add((String) s.get("name")));
+        }
+        // 封装返回的结果
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("sex", sex);
+        resultMap.put("sexCount", sexCount);
+        return new Result(true, MessageConstant.GET_SETMEAL_COUNT_REPORT_SUCCESS, resultMap);
+    }
+
+    /**
+     * 年龄段分类占比
+     * @return
+     */
+    @GetMapping("/getSetmealReportByAge")
+    public Result getSetmealReportByAge() {
+        // 调用服务查询年龄段分类占比
+        List<Map<String, Object>> ageCount = memberService.getSetmealReportByAge();
+        // 年龄段集合
+        List<String> ageGroups = new ArrayList<>();
+        // 抽取年龄段名称
+        if (ageCount != null) {
+            //ageCount.forEach(s -> ageGroups.add((String) s.get("name")));
+            for (Map<String, Object> map : ageCount) {
+                String name = (String) map.get("name");
+                if ("1".equals(name)) {
+                    ageGroups.add("男");
+                    map.put("name", "男");
+                } else {
+                    ageGroups.add("女");
+                    map.put("name", "女");
+                }
+            }
+        }
+        // 封装返回的结果
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("ageGroups", ageGroups);
+        resultMap.put("ageCount", ageCount);
+        return new Result(true, MessageConstant.GET_SETMEAL_COUNT_REPORT_SUCCESS, resultMap);
+    }
+
+    /**
+     * 按日历查询会员数量
+     * @param value1
+     * @return
+     */
+    @GetMapping("/getMemberReport1")
+    public Result getMemberReport1(String value1) throws Exception {
+        // 拿到开始和结束的查询月份
+        String[] split = value1.split(",");
+        List<String> list = Arrays.asList(split);
+        // 通过开始和结束的月份拿到中间的月份
+        List<String> months = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        String begin = list.get(0);
+        String end = list.get(1);
+        Date beginDate = sdf.parse(begin);
+        Date endDate = sdf.parse(end);
+        calendar.setTime(beginDate);
+        months.add(begin);
+        if (begin.equals(end)) {
+
+        } else {
+            do {
+                calendar.add(Calendar.MONTH, 1);
+                months.add(sdf.format(calendar.getTime()));
+            } while (!endDate.equals(calendar.getTime()));
+        }
+
+        // 调用服务去查询每个月的数据
+        List<Integer> memberCount = memberService.getMemberReport1(months);
+        // 构建返回的数据
+        Map<String, Object> map = new HashMap<>();
+        map.put("months", months);
+        map.put("memberCount", memberCount);
+        return new Result(true, MessageConstant.GET_MEMBER_NUMBER_REPORT_SUCCESS, map);
+    }
 
 }

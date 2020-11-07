@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service(interfaceClass = MemberService.class)
 public class MemberServiceImpl implements MemberService {
@@ -50,5 +51,38 @@ public class MemberServiceImpl implements MemberService {
             list.add(memberDao.findMemberCountBeforeDate(month + "-31"));
         });
         return list;
+    }
+
+    /**
+     * 性别分类占比
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getSetmealReportBySex() {
+        return memberDao.getSetmealReportBySex();
+    }
+
+    /**
+     * 年龄段分类占比
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getSetmealReportByAge() {
+        return memberDao.getSetmealReportByAge();
+    }
+
+    /**
+     * 按日历查询会员数量
+     * @param months
+     * @return
+     */
+    @Override
+    public List<Integer> getMemberReport1(List<String> months) {
+        List<Integer> memberCount = new ArrayList<>();
+        months.forEach(month -> {
+            // 查询到每个月最后一天为止的会员总数量
+            memberCount.add(memberDao.findMemberCountBeforeDate(month + "-31"));
+        });
+        return memberCount;
     }
 }
