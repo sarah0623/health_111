@@ -237,6 +237,8 @@
                 this.currentYear = date.getFullYear();
                 this.currentMonth = date.getMonth() + 1;
                 this.currentWeek = date.getDay(); // //本月第一天是周几（周日0 周六 6）
+                var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                var lastDayWeek = lastDay.getDay();
                 var today = new Date();
                 this.LocalMonth = today.getMonth() + 1;
                 if (this.currentWeek == 0) {
@@ -265,7 +267,15 @@
                 //其他周
                 //for (var i = 1; i <= temp - this.currentWeek; i++) {
                 //其他周
-                for (var i = 1; i <= 35 - this.currentWeek; i++) {
+
+                var temp =35;
+
+                if(this.currentWeek>=6  &&  lastDayWeek<=2 && lastDayWeek !=0 ){
+
+                    temp = 42;
+                }
+
+                for (var i = 1; i <= temp - this.currentWeek; i++) {
                     var d = new Date(str);
                     d.setDate(d.getDate() + i);
                     var dayobject = {};//dayobject   {day:date,index:2}
