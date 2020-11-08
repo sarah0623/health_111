@@ -7,22 +7,17 @@ public interface MessageConstant {
     static final String DELETE_CHECKITEM_FAIL = "删除检查项失败";
     static final String DELETE_CHECKITEM_SUCCESS = "删除检查项成功";
     static final String ADD_CHECKITEM_SUCCESS = "新增检查项成功";
-    static final String ADD_USER_SUCCESS = "新增用户成功";
-    static final String ADD_CHECKITEM_FAIL = "新增检查项失败";
+    static final String ADD_USER_SUCCESS = "新增用户成功";    static final String ADD_CHECKITEM_FAIL = "新增检查项失败";
     static final String EDIT_CHECKITEM_FAIL = "编辑检查项失败";
     static final String EDIT_CHECKITEM_SUCCESS = "编辑检查项成功";
-    static final String EDIT_USER_SUCCESS = "编辑用户成功";
-    static final String QUERY_CHECKITEM_SUCCESS = "查询检查项成功";
-    static final String QUERY_USER_SUCCESS = "查询用户成功";
-    static final String QUERY_CHECKITEM_FAIL = "查询检查项失败";
+    static final String EDIT_USER_SUCCESS = "编辑用户成功";    static final String QUERY_CHECKITEM_SUCCESS = "查询检查项成功";
+    static final String QUERY_USER_SUCCESS = "查询用户成功";    static final String QUERY_CHECKITEM_FAIL = "查询检查项失败";
     static final String UPLOAD_SUCCESS = "上传成功";
     static final String ADD_CHECKGROUP_FAIL = "新增检查组失败";
     static final String ADD_CHECKGROUP_SUCCESS = "新增检查组成功";
     static final String DELETE_CHECKGROUP_FAIL = "删除检查组失败";
     static final String DELETE_CHECKGROUP_SUCCESS = "删除检查组成功";
-    static final String DELETE_USER_SUCCESS = "删除用户成功";
-    static final String QUERY_CHECKGROUP_SUCCESS = "查询检查组成功";
-    static final String QUERY_ROLE_SUCCESS = "查询角色成功";
+    static final String DELETE_USER_SUCCESS = "删除用户成功";    static final String QUERY_CHECKGROUP_SUCCESS = "查询检查组成功";
     static final String QUERY_CHECKGROUP_FAIL = "查询检查组失败";
     static final String EDIT_CHECKGROUP_FAIL = "编辑检查组失败";
     static final String EDIT_CHECKGROUP_SUCCESS = "编辑检查组成功";
@@ -73,6 +68,8 @@ public interface MessageConstant {
     static final String CHECKGROUP_IN_USE = "已被套餐使用,不可删除";
     static final String EDIT_SETMEAL_SUCCESS = "编辑体检套餐成功";
     static final String DELETE_SETMEAL_SUCCESS = "删除体检套餐成功";
+
+    static final String QUERY_ROLE_SUCCESS = "查询角色成功";
     static final String QUERY_ROLE_FAIL = "查询角色失败";
     static final String ADD_ROLE_SUCCESS = "新增角色成功";
     static final String ADD_ROLE_FAIL = "新增角色失败";
@@ -80,5 +77,9 @@ public interface MessageConstant {
     static final String EDIT_ROLE_FAIL = "编辑角色成功";
     static final String DELETE_ROLE_SUCCESS = "删除角色成功";
     static final String DELETE_ROLE_FAIL = "删除角色失败";
-    static final String ROLE_IN_USE = "已被菜单管理绑定,不可删除";
+    static final String ROLE_IN_USE = "已被用户管理绑定,不可删除";
+
+
+
+
 }

@@ -96,16 +96,16 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public void deleteById(int id) throws HealthException{
-        //先判断这个角色是否被菜单使用了
-        //调用dao查询检查项的id是否在t_checkgroup_checkitem表中存在记录
+        //先判断这个角色是否被用户使用了
+        //调用dao查询检查项的id是否在t_user_role表中存在记录
         int cnt = roleDao.findCountByRoleId(id);
 
         //被使用了则不能删除
         if (cnt > 0) {
-            // 已经被菜单使用了，则不能删除，报自定义异常错误
+            // 已经被用户使用了，则不能删除，报自定义异常错误
             throw new HealthException(MessageConstant.ROLE_IN_USE);
         }
-        // 先删除检查组与检查项的关系
+        // 先删除角色与菜单的关系
         roleDao.deleteRoleMenu(id);
         //没使用就可以调用dao删除
         roleDao.deleteById(id);

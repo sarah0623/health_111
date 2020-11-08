@@ -87,15 +87,15 @@ public class UserManageServiceImpl implements UserManageService {
     @Override
     @Transactional
     public void deleteById(int id) throws HealthException{
-//     查询 判断该用户是否被角色使用
+/*//     查询 判断该用户是否被角色使用
 int count = userManageDao.findRoleCountByUserId(id);
 //        如果使用了,就抛出异常
 if(count>0){
     throw new HealthException("该用户已被角色使用,不能删除哦!");
-}
+}*/
 //       需要先解除用户与角色的关系
         userManageDao.deleteUserRole(id);
 //        再删除用户
-       userManageDao.deleteById(id);
+        userManageDao.deleteById(id);
     }
 }

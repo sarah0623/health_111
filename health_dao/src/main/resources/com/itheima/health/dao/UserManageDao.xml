@@ -9,7 +9,7 @@
 <!--    新增用户-->
 <insert id="add" useGeneratedKeys="true" keyProperty="id">
 insert into t_user(birthday,gender,username,password,remark,station,telephone)
- values(#{birthday},#{gender},#{username},#{password},#{remark},#{station},#{telephone})
+ values(#{birthday},#{gender},#{username},#{password},#{remark},"1",#{telephone})
 </insert>
 
     <!--    新增用户和角色的关系-->
@@ -20,12 +20,15 @@ values (#{userbeanId},#{roleId})
 
     <!--    分页查询(模糊查询)-->
     <select id="findPage" parameterType="String" resultType="com.itheima.health.pojo.User">
-select * from t_user
-<where>
- <if test="value!=null and value.length>0">
-     username like #{queryPageBean}
- </if>
-</where>
+        select * from t_user
+        <where>
+            <if test="value!=null and value.length>0">
+                username like #{querySting}
+            </if>
+            <if test="station=1">
+                station=1
+            </if>
+        </where>
     </select>
 
 <!--    通过id查询,回显数据-->
@@ -47,24 +50,28 @@ gender=#{gender},
 username=#{username},
 password=#{password},
 remark=#{remark},
-station=#{station},
+station="1",
 telephone=#{telephone}
 where id=#{id}
     </update>
 
-<!--     查询用户是否被角色使用-->
-    <select id="findRoleCountByUserId" parameterType="int" resultType="java.lang.Integer">
-select count(1) from t_user_role where user_id=#{id}
-    </select>
+    <!--     查询用户是否被角色使用-->
+    <!--    <select id="findRoleCountByUserId" parameterType="int" resultType="java.lang.Integer">
+    select count(1) from t_user_role where user_id=#{id}
+        </select>-->
 
     <!--使用了就需要先解除用户与角色的关系-->
     <delete id="deleteUserRole">
         delete from t_user_role where user_id=#{id}
     </delete>
 
-<!--    再删除-->
-    <delete id="deleteById" parameterType="int">
-        delete from t_user where id=#{id}
-    </delete>
+    <!--    再删除-->
+    <!--   <delete id="deleteById" parameterType="int">
+           delete from t_user where id=#{id}
+       </delete>-->
+    <!--修改station为0即页面不可见,不绑定角色-->
+    <update id="deleteById">
+        UPDATE t_user set station=0 where id=#{id}
+    </update>
 
 </mapper>

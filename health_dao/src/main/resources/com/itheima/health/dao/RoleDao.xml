@@ -43,7 +43,7 @@
     </delete>
     <!--检查 检查项是否被检查组使用了-->
     <select id="findCountByRoleId" parameterType="int" resultType="int">
-        select count(1) from t_role_menu where role_id = #{id}
+        select count(1) from t_user_role where role_id = #{id}
     </select>
     <!--查询所有-->
     <select id="findAll" resultType="Role">
