@@ -299,6 +299,50 @@ public class DateUtils {
         return calendar.getTime();
     }
 
+    //获取上个月月份的int值
+    public static int getBeforeMonth(){
+        //获取当前日期
+        Date today = DateUtils.getToday();
+        String todayDate = null;
+        //将当前日期转成string类型
+        try {
+            todayDate  = DateUtils.parseDate2String(today);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //获取上个月的月份值
+      String smonth =  todayDate.split("-")[1];
+        if(smonth.contains("0") && (!("10").equals(smonth))){
+            smonth = smonth.split("0")[1];
+        }
+        int month1 =  Integer.parseInt(smonth)-1;
+
+        return month1;
+    }
+
+
+    //将数据库获取到的日期,转换为int类型的月份值
+    public static int getDataMonth(String month){
+
+        String smonth = month.split("-")[1];
+        if(smonth.contains("0") && (!("10").equals(smonth))){
+            smonth = smonth.split("0")[1];
+        }
+        int month1 =  Integer.parseInt(smonth)-1;
+        return month1;
+    }
+
+    //获取当前的年份 string类型
+
+    public static String getNowYear(){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return sdf.format(date);
+
+    }
+
+
     public static void main(String[] args) {
         try {
             System.out.println("本周一" + parseDate2String(getThisWeekMonday()));

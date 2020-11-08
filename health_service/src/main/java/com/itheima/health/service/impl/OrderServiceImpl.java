@@ -103,30 +103,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+
+
+    @Override
     /**
-     * 获取所有的用户预约数据
+     * 删除某时段用户预约数据
      *
      * @return
      */
+    public void deleteByOrder(String bmonth, String lmonth) {
 
-    @Override
-    public List<String> findAllOrder() {
-
-
-
-
-        return orderDao.findAllOrder();
-    }
-
-    /**
-     * 删除所有的用户预约数据
-     *
-     * @return
-     */
-    @Override
-    public void deleteByOrder() {
-
-        orderDao.deleteByOrder();
+        orderDao.deleteByOrder(bmonth,lmonth);
 
     }
 

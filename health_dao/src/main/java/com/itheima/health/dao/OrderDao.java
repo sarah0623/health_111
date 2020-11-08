@@ -54,17 +54,13 @@ public interface OrderDao {
      */
     Integer findOrderCountBetweenDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
-    /**
-     * 获取所有的用户预约数据
-     *
-     * @return
-     */
-    List<String> findAllOrder();
+
 
     /**
-     * 删除所有的用户预约数据
+     * 删除某时段用户预约数据
      *
      * @return
      */
-    void deleteByOrder();
+    void deleteByOrder(@Param("bmonth") String bmonth, @Param("lmonth") String lmonth);
+
 }

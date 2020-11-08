@@ -24,22 +24,12 @@ public interface OrderService {
     Map findById4Detail(int id);
 
     /**
-     * 获取所有的用户预约数据
+     * 删除某段时间order表预约数据
      *
      * @return
      */
 
-    List<String> findAllOrder();
-
-
-
-    /**
-     * 删除所有的用户预约数据
-     *
-     * @return
-     */
-
-    void deleteByOrder();
+    void deleteByOrder(String bmonth, String lmonth);
 
 
 }

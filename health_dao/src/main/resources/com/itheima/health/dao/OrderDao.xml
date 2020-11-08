@@ -21,11 +21,9 @@
     </insert>
 
     <!--删除所有的用户预约数据-->
+    <delete id="deleteByOrder" parameterType="string">
 
-    <delete id="deleteByOrder">
-
-        delete from t_order
-
+        delete from t_order where orderDate between #{bmonth} and  #{lmonth}
     </delete>
 
     <!--动态条件查询-->
@@ -93,13 +91,6 @@
     <!--查询某段时间的预约数-->
     <select id="findOrderCountBetweenDate" parameterType="string" resultType="int">
         select count(1) from t_order where orderDate between #{startDate} and #{endDate}
-    </select>
-
-    <!--获取所有的用户预约数据-->
-    <select id="findAllOrder" resultType="java.lang.String">
-
-        select * from t_order
-
     </select>
 
 </mapper>

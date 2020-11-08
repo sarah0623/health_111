@@ -242,7 +242,7 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- java编译插件 -->
+            <!-- java编译插件1-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -29,22 +29,12 @@ public interface OrderSettingService {
      */
     void editNumberByDate(OrderSetting orderSetting) throws HealthException;
 
-
-
-
     /**
-     * 获取t_ordersetting表的所有预约数据
+     * 删除t_ordersetting表的某段时间的预约数据
      *
      * @return
      */
-    List<String> findAllOrderSetting();
-
-    /**
-     * 删除t_ordersetting表的所有预约数据
-     *
-     * @return
-     */
-    void deleteByOrderSetting();
+    void deleteByOrderSetting(String bmonth, String lmonth);
 
 
 }

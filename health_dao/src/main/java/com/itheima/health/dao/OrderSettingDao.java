@@ -1,6 +1,7 @@
 package com.itheima.health.dao;
 
 import com.itheima.health.pojo.OrderSetting;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -44,23 +45,12 @@ public interface OrderSettingDao {
      */
     int editReservationsByOrderDate(OrderSetting orderSetting);
 
-
-
-
-    /**
-     * 获取t_ordersetting表的所有预约数据
-     *
-     * @return
-     */
-    List<String> findAllOrderSetting();
-
-
     /**
      * 删除t_ordersetting表的所有预约数据
      *
      * @return
      */
-    void deleteByOrderSetting();
+    void deleteByOrderSetting(@Param("bmonth") String bmonth, @Param("lmonth") String lmonth);
 
 
 

@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.health.dao.OrderSettingDao">
-    <delete id="deleteByOrderSetting">
+    <delete id="deleteByOrderSetting" parameterType="string">
 
 
-        delete from t_ordersetting
+     delete from t_ordersetting where orderDate between #{bmonth} and  #{lmonth}
 
 
     </delete>
@@ -32,16 +32,6 @@
         from t_ordersetting
         where orderDate like #{month}
     </select>
-
-
-
-    <!--获取t_ordersetting表的所有预约数据-->
-    <select id="findAllOrderSetting" resultType="java.lang.String">
-
-         select * from t_ordersetting
-
-    </select>
-
 
     <!--更新已预约人数-->
     <update id="editReservationsByOrderDate" parameterType="OrderSetting">
