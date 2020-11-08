@@ -45,8 +45,8 @@
 <body class="hold-transition">
 <div id="app">
     <div class="content-header">
-        <h1>用户管理
-            <small></small>
+        <h1>系统设置
+            <small>用户管理</small>
         </h1>
         <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -165,7 +165,7 @@
                                         <tbody>
                                         <tr v-for="c in tableData">
                                             <td>
-                                                <input :id="c.id" v-model="checkitemIds" type="checkbox" :value="c.id">
+                                                <input :id="c.id" v-model="roleIds" type="checkbox" :value="c.id">
                                             </td>
                                             <td><label :for="c.id">{{c.name}}</label></td>
                                             <td><label :for="c.id">{{c.keyword}}</label></td>
@@ -358,7 +358,7 @@
                     //判断后台返回的flag值，true表示添加操作成功，false为添加操作失败
                     if (res.data.flag) {
                         //隐藏新增窗口
-                        this.dialogFormVisible = false;
+                        this.dialogFormVisible4Edit = false;
                         // 刷新列表数据
                         this.findPage();
                     }

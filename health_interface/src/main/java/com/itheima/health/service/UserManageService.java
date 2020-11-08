@@ -4,7 +4,6 @@ import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.exception.HealthException;
 import com.itheima.health.pojo.User;
-import com.sun.xml.internal.ws.handler.HandlerException;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;

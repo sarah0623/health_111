@@ -50,7 +50,7 @@ public class UserManageController {
     @GetMapping("/findRoleIdByUserId")
     public Result findRoleIdByUserId(int id){
         List<Integer> roleIds = userManageService.findRoleIdByUserId(id);
-        return new Result(true,MessageConstant.QUERY_ROLE_SUCCESS);
+        return new Result(true,MessageConstant.QUERY_ROLE_SUCCESS,roleIds);
     }
 
     //    编辑
