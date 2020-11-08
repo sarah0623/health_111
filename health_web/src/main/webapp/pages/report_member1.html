@@ -19,7 +19,18 @@
     <div class="content-header">
         <h1>统计分析
             <small>会员数量</small>
+            <el-date-picker
+                    v-model="value1"
+                    unlink-panels=true
+                    type="monthrange"
+                    range-separator="至"
+                    start-placeholder="开始月份"
+                    end-placeholder="结束月份"
+                    @change="dateChange"
+                    value-format="yyyy-MM">
+            </el-date-picker>
         </h1>
+
         <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>统计分析</el-breadcrumb-item>
@@ -28,19 +39,11 @@
     </div>
 
     <div class="block">
-        <el-date-picker
-                v-model="value1"
-                unlink-panels="true"
-                type="monthrange"
-                range-separator="至"
-                start-placeholder="开始月份"
-                end-placeholder="结束月份"
-                @change="dateChange"
-                value-format="yyyy-MM">
-        </el-date-picker>
-    </div>
 
+
+    </div>
     <div class="app-container">
+
         <div class="box">
             <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
             <div id="chart1" style="height:600px;"></div>
@@ -88,6 +91,10 @@
             dateChange() {
                 //alert(this.value1);
                 axios.get("/report/getMemberReport1.do?value1=" + this.value1).then((res1) => {
+                    this.$message({
+                        message: res1.data.message,
+                        type: res1.data.flag ? "success" : "error"
+                    });
                     if (res1.data.flag) {
                         myChart1.setOption(
                             {
@@ -107,7 +114,8 @@
                                 series: [{
                                     name: '会员数量',
                                     type: 'line',
-                                    data: res1.data.data.memberCount
+                                    data: res1.data.data.memberCount,
+                                    //smooth: true
                                 }]
                             }
                         );
@@ -143,7 +151,8 @@
                     series: [{
                         name: '会员数量',
                         type: 'line',
-                        data: res.data.data.memberCount
+                        data: res.data.data.memberCount,
+                        //smooth: true
                     }]
                 }
             );
