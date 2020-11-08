@@ -74,7 +74,7 @@
                 </el-table-column>
                 <el-table-column prop="birthday" label="出生日期" align="center" width="150"></el-table-column>
                 <el-table-column prop="telephone" label="电话号码" align="center" width="150"></el-table-column>
-                <el-table-column prop="station" label="状态" align="center" width="100"></el-table-column>
+                <!--<el-table-column prop="station" label="状态" align="center" width="100"></el-table-column>-->
                 <el-table-column prop="remark" label="附注" align="center" width="100"></el-table-column>
                 <el-table-column label="操作" align="center">
                     <template slot-scope="scope">
@@ -447,7 +447,7 @@
                 // row行数据，数据库中的一条记录，checkitem实体对象
                 // 获取删除的id
                 var id = row.id;
-                this.$confirm('此操作将【永久删除】该用户, 是否继续?', '提示', {
+                this.$confirm('此操作将【删除】该用户与角色的关系, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
